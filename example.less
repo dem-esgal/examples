@@ -1,0 +1,522 @@
+/*Fonts*/
+@font-family: 'Open Sans';
+@OpenSansFontPath: "../fonts";
+
+/*Colors*/
+@orange: #ef7b38;
+@white: #ffffff;
+@green: #00823c;
+@marine: #009b96;
+/*Font-colors*/
+@main-font-color: #303030;
+@no-data-font-color: #808080;
+@empty-table-font-color: #909090;
+@active-border-color: #eba300;
+/*BG-colors*/
+@active-content: #fff798;
+@gray-diagramm-color: #c0c0c0;
+@gray-bg-color: #f4f4f4;
+@table-header-color: #e8e8e8;
+@table-row-color: #f8f8f8;
+@legend-color: #707070;
+/*Border-color*/
+@button-border-color: #28955b;
+@border-color-gray: #e8e8e7;
+
+/*Sizes*/
+@north-panel-size: 40px;
+/*Font-sizes*/
+@h0-font-size: 32px;
+@h1-font-size: 24px;
+@main-font-size: 14px;
+@small-font-size : 12px;
+@button-font-size: 18px;
+@legend-font-size: 12px;
+/*Paddings*/
+@left-padding: 20px;
+@small-padding: 10px;
+@normal-padding: 20px;
+
+/* Font Regular */
+@font-face {
+  font-family: @font-family;
+  src: url('@{OpenSansFontPath}/Regular/OpenSans-Regular.eot');
+  src: url('@{OpenSansFontPath}/Regular/OpenSans-Regular.eot?#iefix') format('embedded-opentype'),
+  url('@{OpenSansFontPath}/Regular/OpenSans-Regular.woff') format('woff'),
+  url('@{OpenSansFontPath}/Regular/OpenSans-Regular.ttf') format('truetype'),
+  url('@{OpenSansFontPath}/Regular/OpenSans-Regular.svg#OpenSansRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Font Bold */
+@font-face {
+  font-family: @font-family;
+  src: url('@{OpenSansFontPath}/Bold/OpenSans-Bold.eot');
+  src: url('@{OpenSansFontPath}/Bold/OpenSans-Bold.eot?#iefix') format('embedded-opentype'),
+  url('@{OpenSansFontPath}/Bold/OpenSans-Bold.woff') format('woff'),
+  url('@{OpenSansFontPath}/Bold/OpenSans-Bold.ttf') format('truetype'),
+  url('@{OpenSansFontPath}/Bold/OpenSans-Bold.svg#OpenSansBold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+
+/*Mixins*/
+
+.border-radius(@topright: 7px, @bottomright: 7px, @bottomleft: 7px, @topleft: 7px) {
+  -webkit-border-top-right-radius: @topright;
+  -webkit-border-bottom-right-radius: @bottomright;
+  -webkit-border-bottom-left-radius: @bottomleft;
+  -webkit-border-top-left-radius: @topleft;
+  -moz-border-radius-topright: @topright;
+  -moz-border-radius-bottomright: @bottomright;
+  -moz-border-radius-bottomleft: @bottomleft;
+  -moz-border-radius-topleft: @topleft;
+  border-top-right-radius: @topright;
+  border-bottom-right-radius: @bottomright;
+  border-bottom-left-radius: @bottomleft;
+  border-top-left-radius: @topleft;
+  .background-clip(padding-box);
+}
+
+.background-clip(@argument: padding-box) {
+  -moz-background-clip: @argument;
+  -webkit-background-clip: @argument;
+  background-clip: @argument;
+}
+
+/*Main*/
+body {
+  padding: @small-padding/2 @normal-padding @normal-padding @normal-padding;
+}
+
+/*Header*/
+.navbar {
+  position: fixed;
+  z-index: 1030;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: @north-panel-size;
+  overflow: visible;
+  margin-bottom: 0;
+
+  .logo {
+    width: 200px;
+    height: @north-panel-size;
+    line-height: @north-panel-size - 6px;
+    background-image: url('../images/logotype.png');
+    background-position: @small-padding 3px;
+    background-repeat: no-repeat;
+  }
+
+  .link {
+    cursor: pointer;
+    width: @north-panel-size+110;
+    height: @north-panel-size;
+    padding-left: @north-panel-size;
+    background-image: url('../images/link.png');
+    background-repeat: no-repeat;
+  }
+
+  .menu-item {
+    float: left;
+    display: inline-block;
+    height: @north-panel-size;
+    padding: 0 @normal-padding;
+    border-left: 1px solid @button-border-color;
+    a, div {
+      color: @white;
+      line-height: @north-panel-size;
+      border: none;
+      font-family: @font-family;
+      font-size: @main-font-size;
+      text-decoration: none;
+      outline: none;
+    }
+  }
+
+  .user-name {
+    display: inline-block;
+    height: @north-panel-size;
+    color: @white;
+    vertical-align: top;
+    line-height: @north-panel-size;
+    font-family: @font-family;
+    font-size: @main-font-size;
+  }
+
+  .person {
+    display: inline-block;
+    width: 50px;
+    height: @north-panel-size - 6px;
+    line-height: @north-panel-size - 6px;
+    background-image: url('../images/person.png');
+    background-position: 20px 6px;
+    background-repeat: no-repeat;
+  }
+
+  .logout {
+    width: 60px;
+    height: @north-panel-size - 6px;
+    line-height: @north-panel-size - 6px;
+    background-image: url('../images/exit-white.png');
+    background-position: 20px 6px;
+    background-repeat: no-repeat;
+  }
+
+  .navbar-inner {
+    position: relative;
+    height: @north-panel-size;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: @green;
+    background-repeat: repeat-x;
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.1), 0 1px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/*Content*/
+.main-content {
+  padding-top: @north-panel-size;
+  padding-bottom: 0;
+
+  .h0-style {
+    cursor: pointer;
+    color: @orange;
+    font-size: @h0-font-size;
+    font-family: @font-family;
+    text-decoration: none;
+  }
+
+  span.h1-style {
+    color: @main-font-color;
+    font-size: @h1-font-size;
+    font-family: @font-family;
+  }
+
+  .h2-style {
+    color: @main-font-color;
+    font-size: @main-font-size;
+    font-family: @font-family;
+    option { /*IE8 problem hack*/
+      color: inherit;
+      font-size: inherit;
+      font-family: inherit;
+    }
+  }
+
+  .h3-style {
+    color: @main-font-color;
+    font-size: @small-font-size;
+    font-family: @font-family;
+    option {
+      color: inherit;
+      font-size: inherit;
+      font-family: inherit;
+    }
+  }
+
+  .minus-style {
+    color: @no-data-font-color;
+    font-size: @main-font-size;
+    font-family: @font-family;
+  }
+
+  .new-line-left, .new-line-right, .new-line-center {
+    padding: @normal-padding 0 @normal-padding 0;
+  }
+
+  .block {
+    width: 100%;
+    border-bottom: 2px solid @border-color-gray;
+    padding-bottom: 10px;
+  }
+
+  .inline-left {
+    display: inline-block;
+    padding-right: 50px;
+  }
+
+  .inline-right {
+    display: inline-block;
+    float: right;
+    padding-left: 50px;
+  }
+  .orange-color {
+    color: @orange;
+  }
+
+  .color_rect {
+    height: 15px;
+    width: 15px;
+    margin-left: 10px;
+    margin-right: 5px;
+  }
+  div.empty-table {
+    color: @empty-table-font-color;
+    font-size: @main-font-size;
+    font-family: @font-family;
+  }
+
+  .atc-table {
+    width: 100%;
+    th {
+      background-color: @table-header-color;
+      border-right: 1px solid @white;
+      font-weight: normal;
+    }
+    td {
+      background-color: @table-row-color;
+    }
+    td, th {
+      padding: @normal-padding @small-padding*1.5 @normal-padding @small-padding*1.5;
+      word-wrap: break-word;
+      text-align: center;
+      &.left-aligned {
+        text-align: left;
+      }
+    }
+    tr.even:hover td, tr.odd:hover td {
+      background-color: @active-content;
+    }
+    tr.odd td {
+      background-color: @table-row-color;
+    }
+    tr.even td {
+      background-color: @white;
+    }
+  }
+
+  .large-table {
+    width: 100%;
+    th {
+      background-color: @table-header-color;
+      border-right: 1px solid @white;
+      font-weight: normal;
+    }
+    td {
+      background-color: @table-row-color;
+    }
+    td, th {
+      padding: @small-padding @small-padding*0.5 @small-padding @small-padding*0.5;
+      word-wrap: break-word;
+      text-align: center;
+      &.left-aligned {
+        text-align: left;
+      }
+    }
+    tr.even:hover td, tr.odd:hover td {
+      background-color: @active-content;
+    }
+    tr.odd td {
+      background-color: @table-row-color;
+    }
+    tr.even td {
+      background-color: @white;
+    }
+  }
+
+  .error-report {
+    padding: @small-padding @small-padding @small-padding @normal-padding;
+    background-color: @active-content;
+    img {
+      vertical-align: bottom;
+      padding-right: @small-padding;
+    }
+    div {
+      display: inline-block;
+      vertical-align: bottom;
+    }
+  }
+
+  .button {
+    margin: @normal-padding @small-padding @small-padding 0;
+    padding: @small-padding/2 @small-padding;
+    border: none;
+    outline: none;
+    background: none;
+    &.active-button {
+      border: 2px solid @active-border-color;
+      .border-radius;
+      span {
+        border: none;
+      }
+    }
+    span {
+      border-bottom: 1px dashed @main-font-color;
+    }
+  }
+
+  .select-period {
+    padding-left: @normal-padding+@small-padding;
+    span {
+      vertical-align: middle;
+      padding-right: @small-padding/2;
+    }
+  }
+
+  .calc-results {
+    padding-top: 0;
+    td {
+      padding: @small-padding/2 @small-padding/2 @small-padding/2 0;
+    }
+  }
+
+  .inline-right.premium-methodic {
+    padding-top: @normal-padding;
+    img {
+      display: inline-block;
+    }
+    div {
+      display: inline-block;
+      vertical-align: bottom;
+      padding-bottom: @small-padding/2;
+    }
+  }
+
+  .premium-chart-wrapper {
+    width: 1200px;
+    padding: @normal-padding @small-padding @normal-padding @normal-padding;
+    margin-bottom: @normal-padding;
+    background: @gray-bg-color;
+    .premium-chart {
+      height: 400px;
+      width: 1200px;
+      background: @gray-bg-color;
+      margin-bottom: @small-padding;
+    }
+  }
+
+  .legend {
+    display: inline-block;
+    text-align: center;
+    padding: @small-padding @normal-padding;
+    margin-bottom: 20px;
+    background-color: @gray-bg-color;
+    div {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .fact-premium {
+      background-color: @marine;
+      .color_rect;
+    }
+
+    .plan-premium {
+      background-color: @active-border-color;
+      .color_rect;
+    }
+
+    .prev-premium {
+      background-color: @gray-diagramm-color;
+      .color_rect;
+    }
+
+    .diagram-legend {
+      color: @legend-color;
+      font-size: @legend-font-size;
+      font-family: @font-family;
+    }
+  }
+  .left-slider, .right-slider {
+    width: 28px;
+    position: absolute;
+    top: @normal-padding;
+    bottom: @normal-padding;
+  }
+  .slider-button {
+    width: 22px;
+    height: 40px;
+    position: absolute;
+    top: 45%;
+    border: none;
+    outline: none;
+  }
+  .left-slider {
+    left: 600px;
+    background: url('../images/nav-shadow-left.png') repeat-y;
+    .slider-button {
+      background: url('../images/nav-arrow-left-disabled.png') no-repeat center;
+      &.active-button {
+        background: url('../images/nav-arrow-left-active.png') no-repeat center;
+      }
+    }
+  }
+  .right-slider {
+    right: 0;
+    background: url('../images/nav-shadow-left.png') repeat-y;
+    .slider-button {
+      background: url('../images/nav-arrow-right-disabled.png') no-repeat center;
+      &.active-button {
+        background: url('../images/nav-arrow-right-active.png') no-repeat center;
+      }
+    }
+  }
+  .atc-table th.dynamic-cols {
+    width: 30px;
+    padding: @small-padding*1.5 @small-padding;
+  }
+  .text-output {
+    word-break: normal;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    -ms-word-wrap: break-word;
+  }
+  .file-download {
+    width: auto;
+    height: 22px;
+    display: inline-block;
+    text-align: center;
+    padding: @small-padding @normal-padding 0 @normal-padding;
+    border: 1px solid @border-color-gray;
+    color: @main-font-color;
+    font-family: @font-family;
+  }
+  a.file-download {
+    outline: none;
+    text-decoration: none;
+  }
+
+}
+
+.dates-filter {
+  div, input {
+    display: inline-block;
+    color: @main-font-color;
+    font-size: @main-font-size;
+    font-family: @font-family;
+  }
+  div {
+    padding: @small-padding;
+  }
+}
+
+.paginator {
+  button {
+    display: inline-block;
+    cursor: pointer;
+    padding: @small-padding;
+    border: 1px solid @border-color-gray;
+    &.disabled {
+      color: @gray-bg-color;
+    }
+  }
+}
+
+.element-disabled {
+  cursor: default;
+  border: 1px solid #ddd;
+  background-color: #f4f4f4;
+  background-image: none;
+  color: #444;
+}
+
+.complex-chart, .plan-fact-chart {
+  width: 100%;
+  .jqplot-event-canvas {
+    border-left: 1px solid #808080;
+  }
+}
+
