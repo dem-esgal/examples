@@ -1,0 +1,83 @@
+@import "fonts";
+@import "variables";
+@import "reset";
+
+@mixin transition($r...) {
+  -moz-transition: $r;
+  -o-transition: $r;
+  -webkit-transition: $r;
+  transition: $r;
+}
+
+@mixin circle($radius) {
+  width: $radius * 2;
+  height: $radius * 2;
+  border-radius: 50%;
+}
+
+@mixin triangle-general($triangle-width) {
+  width: $triangle-width;
+  content: '';
+  display: inline-block;
+}
+
+$triangle-color: #cbd4d9;
+$main-font-size: 13px;
+
+@mixin triangle($position, $triangle-width, $color: $triangle-color) {
+  @if $position == bottom {
+    @include triangle-general($triangle-width);
+    border-left: $triangle-width/2 solid transparent;
+    border-right: $triangle-width/2 solid transparent;
+    border-top: $triangle-width solid $color;
+    border-bottom: none;
+  }
+  @if $position == top {
+    @include triangle-general($triangle-width);
+    border-left: $triangle-width/2 solid transparent;
+    border-right: $triangle-width/2 solid transparent;
+    border-top: none;
+    border-bottom: $triangle-width solid $color;
+  }
+}
+
+thead td {
+  vertical-align: top;
+  font-size: $main-font-size;
+  .sortable-cell {
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  .sort-selected {
+    &:before {
+      @include triangle("top", 10px);
+    }
+    &.sort-order-desc:before {
+      @include triangle("bottom", 10px);
+    }
+  }
+
+}
+
+.selected td {
+  border-color: #ffdfdf;
+  background: #fffdfd;
+  &:first-child:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 9999px;
+    border-top: 1px solid #ffdfdf;
+    margin-top: -38px;
+    height: 1px;
+    overflow: hidden;
+  }
+}
+
+.date .time {
+  font-style: normal;
+  &:before {
+    content: "|";
+    padding: 0 4px 0 6px;
+  }
+}
